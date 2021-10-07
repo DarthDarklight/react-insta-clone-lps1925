@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import postsList from "./data";
+import Post from "./components/Post/Post";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 function App() {
+  /// JSX - html in javascript
+  console.log("postsList:", postsList);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchBar />
+      {postsList.map((post) => {
+        return <Post key={post.id} post={post} />;
+      })}
     </div>
   );
 }
