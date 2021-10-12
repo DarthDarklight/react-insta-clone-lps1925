@@ -1,10 +1,12 @@
 import React from "react";
 import Comment from "../Comment/Comment";
+import LikeSection from "../LikeSection/LikeSection";
+
 import "./Post.css";
 
 const Post = (props) => {
   ///destructurare de props
-  const { post } = props;
+  const { post, likePost } = props;
 
   return (
     <div className="posts-container-wrapper">
@@ -19,6 +21,7 @@ const Post = (props) => {
         <div className="post-image-wrapper">
           <img src={post.imageUrl} alt="post" className="post-image" />
         </div>
+        <LikeSection likes={post.likes} likePost={likePost} postId={post.id} />
 
         <div>
           {post.comments.map((comment, index) => {

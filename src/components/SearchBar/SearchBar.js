@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -9,14 +9,41 @@ import {
 
 import "./SearchBar.css";
 
-const SearchBar = () => {
+const SearchBar = ({ searchPosts }) => {
+  /// Hooks: useState, useEffect, useContext
+  const [inputValue, setInputValue] = useState("");
+  console.log("input", inputValue);
+
+  const handleInputChange = (event) => {
+    event.preventDefault();
+    setInputValue(event.target.value);
+  };
+
+  const handleButtonClick = (event) => {
+    event.preventDefault();
+    searchPosts(inputValue);
+  };
+
+  const handleClearButton = (event) => {
+    event.preventDefault();
+    setInputValue("");
+    //searchPosts(inputValue);
+  };
+
   return (
     <div className="search-bar-wrapper">
       <div className="social">
         <FontAwesomeIcon icon={faInstagram} />
       </div>
       <form className="search-form">
-        <input type="text" placeholder="Search" />
+        <input
+          type="text"
+          placeholder="Search"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        <button onClick={handleButtonClick}>Submit</button>
+        <button onClick={handleClearButton}>Clear</button>
       </form>
       <div className="social-wrapper">
         <div className="social">
