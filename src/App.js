@@ -22,10 +22,12 @@ function App() {
     return setPosts(posts);
   };
 
-  const likePost = (postId) => {
+  const likePost = (postId, isLiked) => {
     const updatedPosts = posts.map((post) => {
       if (post.id === postId) {
-        return { ...post, likes: post.likes + 1 };
+        return !isLiked
+          ? { ...post, likes: post.likes + 1 }
+          : { ...post, likes: post.likes - 1 };
       }
       return post;
     });
